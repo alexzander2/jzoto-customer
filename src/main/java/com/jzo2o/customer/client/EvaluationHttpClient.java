@@ -4,8 +4,8 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.http.Header;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.json.JSONUtil;
-import cn.xiaozhibang.evaluation.sdk.core.TokenHelper;
-import cn.xiaozhibang.evaluation.sdk.model.domain.CurrentUser;
+//import cn.xiaozhibang.evaluation.sdk.core.TokenHelper;
+//import cn.xiaozhibang.evaluation.sdk.model.domain.CurrentUser;
 import com.jzo2o.common.constants.ErrorInfo;
 import com.jzo2o.common.constants.UserType;
 import com.jzo2o.common.expcetions.CommonException;
@@ -261,4 +261,30 @@ public class EvaluationHttpClient {
             return TokenHelper.generateTokenOfUser(appId, accessKeyId, accessKeySecret, currentUser);
         }
     }
+}
+
+class CurrentUser{
+    String id;
+    String nickName;
+    String userAvatar;
+    public void setId(String id){
+        this.id = id;
+    }
+    public void setNickName(String name){
+        this.nickName  = name;
+    }
+
+    public void setUserAvatar(String avatar){
+        this.userAvatar = avatar;
+    }
+}
+class TokenHelper{
+    public static String generateTokenOfAdmin(String appId, String accessKeyId, String accessKeySecret, CurrentUser  currentUser){
+        return appId + accessKeyId + accessKeySecret + currentUser;
+    }
+
+    public static String generateTokenOfUser(String appId, String accessKeyId, String accessKeySecret, CurrentUser  currentUser){
+        return appId + accessKeyId + accessKeySecret + currentUser;
+    }
+
 }
